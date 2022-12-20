@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listUsers, deleteUser } from '../actions/userAction'
+import { Link } from 'react-router-dom'
 
 const UserListScreen = ({ history}) => {
   const dispatch = useDispatch()
@@ -67,11 +67,11 @@ const UserListScreen = ({ history}) => {
                 </td>
 
                 <td>
-                  <LinkContainer to={`/admin/user/${user._id}/edit`}>
+                  <Link to={`/admin/user/${user._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <i className="fa fa-edit"></i>
                     </Button>
-                  </LinkContainer>
+                  </Link>
                   <Button variant='danger' className='btn-sm' onClick={ ()=> deleteHandler(user._id)}>
                     <i className="fas fa-trash"></i>
                   </Button>

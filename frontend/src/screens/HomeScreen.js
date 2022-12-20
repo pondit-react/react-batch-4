@@ -11,7 +11,7 @@ import ProductCarousel from '../components/ProductCarousel'
 import Meta from '../components/Meta'
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const HomeScreen = ({ match }) => {
+const HomeScreen = ({match}) => {
   const keyword = match.params.keyword
 
   //let pageNumber = match.params.pageNumber || 1

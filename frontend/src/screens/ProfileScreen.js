@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -153,9 +152,9 @@ const ProfileScreen = ({ location, history }) => {
                       <i className='fa fa-times' style={{ color: 'red' }}></i>
                     )}</td>
                     <td>
-                      <LinkContainer to={`/order/${order._id}`}>
+                      <Link to={`/order/${order._id}`}>
                         <Button className='btn-sm' variant='light'>Details</Button>
-                      </LinkContainer>
+                      </Link>
                     </td>
                   </tr>
                 ))}

@@ -1,45 +1,66 @@
-import React from 'react'
-import {BrowserRouter as Router, Route} from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import { Container } from 'react-bootstrap'
-import * as screens from './screens'
+import React, { Fragment } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import { Container } from "react-bootstrap";
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+// import * as screens from "./screens";
 
 const App = () => {
   return (
-    <Router>
-      <Header/>
+    <BrowserRouter>
+      <Header />
       <main className="py-3">
         <Container>
-          <Route path='/login' component={screens.LoginScreen} />
-          <Route path='/placeorder' component={screens.PlaceOrderScreen} />
-          <Route path='/order/:id' component={screens.OrderScreen} />
-          <Route path='/payment' component={screens.PaymentScreen} />
-          <Route path='/shipping' component={screens.ShippingScreen} />
-          <Route path='/register' component={screens.RegisterScreen} />
-          <Route path='/profile' component={screens.ProfileScreen} />
-          <Route path='/product/:id' component={screens.ProductScreen}/>
-          <Route path='/cart/:id?' component={screens.CartScreen} />
-          <Route path='/admin/userlist' component={screens.UserListScreen} />
-          <Route path='/admin/user/:id/edit' component={screens.UserEditScreen} />
-          <Route path='/admin/productlist' component={screens.ProductListScreen} exact/>
-          <Route path='/admin/productlist/:pageNumber' component={screens.ProductListScreen} exact/>
-          <Route path='/admin/product/:id/edit' component={screens.ProductEditScreen} />
-          <Route path='/admin/orderlist' component={screens.OrderListScreen} />
+          <Routes>
+            {/* <Route path="/" element={<HomeScreen/>} /> */}
+            <Route path="/login" element={<LoginScreen/>} />
+            {/* <Route path="/placeorder" element={screens.PlaceOrderScreen} />
+            <Route path="/register" element={screens.RegisterScreen} />
+            <Route path="/order/:id" element={screens.OrderScreen} />
+            <Route path="/payment" element={screens.PaymentScreen} />
+            <Route path="/shipping" element={screens.ShippingScreen} />
+            <Route path="/profile" element={screens.ProfileScreen} />
+            <Route path="/product/:id" element={screens.ProductScreen} />
+            <Route path="/cart/:id?" element={screens.CartScreen} />
+            <Route path="/admin/userlist" element={screens.UserListScreen} />
+            <Route
+              path="/admin/user/:id/edit"
+              element={screens.UserEditScreen}
+            />
+            <Route
+              path="/admin/productlist"
+              element={screens.ProductListScreen}
+            />
+            <Route
+              path="/admin/productlist/:pageNumber"
+              element={screens.ProductListScreen}
+            />
+            <Route
+              path="/admin/product/:id/edit"
+              element={screens.ProductEditScreen}
+            />
+            <Route path="/admin/orderlist" element={screens.OrderListScreen} />
 
-          <Route path='/search/:keyword' component={screens.HomeScreen} exact />
-          <Route path='/page/:pageNumber' component={screens.HomeScreen} exact />
-          <Route
-            path='/search/:keyword/page/:pageNumber'
-            component={screens.HomeScreen}
-            exact
-          />
-          <Route path='/' component={screens.HomeScreen} exact />
+            <Route path="/search/:keyword" element={screens.HomeScreen} exact />
+            <Route path="/page/:pageNumber" element={screens.HomeScreen} />
+            <Route
+              path="/search/:keyword/page/:pageNumber"
+              element={screens.HomeScreen}
+            /> */}
+          </Routes>
         </Container>
       </main>
-      <Footer/>
-    </Router>
+      <Footer />
+      {/* 
+      
+        
+        </Container>
+      </main>
+       */}
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

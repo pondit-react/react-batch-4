@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -7,6 +6,7 @@ import Loader from '../components/Loader'
 import { listProduct, deleteProduct, createProduct } from '../actions/productAction'
 import * as productConstants from '../constants/productConstants.js'
 import Paginate from '../components/Paginate'
+import { Link } from 'react-router-dom'
 
 const ProductListScreen = ({ history, match }) => {
   const pageNumber = match.params.pageNumber || 1
@@ -108,11 +108,11 @@ const ProductListScreen = ({ history, match }) => {
                   </td>
 
                   <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                    <Link to={`/admin/product/${product._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
                         <i className="fa fa-edit"></i>
                       </Button>
-                    </LinkContainer>
+                    </Link>
                     <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
                       <i className="fas fa-trash"></i>
                     </Button>
