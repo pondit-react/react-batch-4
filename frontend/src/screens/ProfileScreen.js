@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Table, Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -8,7 +8,7 @@ import Loader from '../components/Loader'
 import { getUserDetails, updateUserProfile } from '../actions/userAction.js'
 import { listUserOrders } from '../actions/orderActions'
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -16,6 +16,7 @@ const ProfileScreen = ({ location, history }) => {
   const [message, setMessage] = useState(null)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const userDetails = useSelector(state => state.userDetails)
   const { loading, error, user } = userDetails
@@ -31,7 +32,7 @@ const ProfileScreen = ({ location, history }) => {
 
   useEffect(() => {
     if (!userInfo) {
-      history.push('/login')
+      navigate("/login");
     } else {
       console.log(user)
       if (!user || !user.name){
@@ -42,7 +43,7 @@ const ProfileScreen = ({ location, history }) => {
         setEmail(user.email)
       }
     }
-  }, [dispatch, history, userInfo, user, orders])
+  }, [dispatch,  userInfo, user, orders])
 
   const submitHandler = (e) => {
     e.preventDefault()

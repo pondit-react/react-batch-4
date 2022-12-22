@@ -5,6 +5,13 @@ import Footer from "./components/Footer";
 import { Container } from "react-bootstrap";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ShippingScreen from "./screens/ShippingScreen";
+import PaymentScreen from "./screens/PaymentScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import PlaceOrderScreen from "./screens/PlaceOrderScreen";
+import UserListScreen from "./screens/UserListScreen";
+import OrderScreen from "./screens/OrderScreen";
 // import * as screens from "./screens";
 
 const App = () => {
@@ -16,15 +23,16 @@ const App = () => {
           <Routes>
             {/* <Route path="/" element={<HomeScreen/>} /> */}
             <Route path="/login" element={<LoginScreen/>} />
-            {/* <Route path="/placeorder" element={screens.PlaceOrderScreen} />
-            <Route path="/register" element={screens.RegisterScreen} />
-            <Route path="/order/:id" element={screens.OrderScreen} />
-            <Route path="/payment" element={screens.PaymentScreen} />
-            <Route path="/shipping" element={screens.ShippingScreen} />
-            <Route path="/profile" element={screens.ProfileScreen} />
+            <Route path="/register" element={<RegisterScreen/>} />
+            <Route path="/shipping" element={<ShippingScreen/>} />
+            <Route path="/payment" element={<PaymentScreen/>} />
+            <Route path="/profile" element={<ProfileScreen/>} />
+            <Route path="/placeorder" element={<PlaceOrderScreen/>} />
+            <Route path="/admin/userlist" element={<UserListScreen/>} />
+            {/*
             <Route path="/product/:id" element={screens.ProductScreen} />
             <Route path="/cart/:id?" element={screens.CartScreen} />
-            <Route path="/admin/userlist" element={screens.UserListScreen} />
+            <Route path="/order/:id" element={<OrderScreen/>} />
             <Route
               path="/admin/user/:id/edit"
               element={screens.UserEditScreen}
