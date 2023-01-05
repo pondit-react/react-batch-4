@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
 import { Table, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -7,9 +6,12 @@ import Loader from '../components/Loader'
 import { listProduct, deleteProduct, createProduct } from '../actions/productAction'
 import * as productConstants from '../constants/productConstants.js'
 import Paginate from '../components/Paginate'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const ProductListScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1
+const ProductListScreen = () => {
+  const navigate = useNavigate();
+  const { keyword } = useParams();
+  const pageNumber = keyword.pageNumber || 1;
 
   const dispatch = useDispatch()
 
@@ -39,18 +41,18 @@ const ProductListScreen = ({ history, match }) => {
     dispatch({ type: productConstants.PRODUCT_CREATE_RESET})
     
     if (!userInfo || !userInfo.isAdmin) {
-      history.push('/login')
+      navigate("/login");
     }
 
     if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`)
+      navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
       dispatch(listProduct('', pageNumber))
     }
 
     console.log(products);
 
-  }, [dispatch, history, userInfo, successDelete, successCreate, createProduct, pageNumber])
+  }, [dispatch,  userInfo, successDelete, successCreate, createProduct, pageNumber])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure you want to delete')) {
@@ -108,11 +110,11 @@ const ProductListScreen = ({ history, match }) => {
                   </td>
 
                   <td>
-                    <LinkContainer to={`/admin/product/${product._id}/edit`}>
+                    <Link to={`/admin/product/${product._id}/edit`}>
                       <Button variant='light' className='btn-sm'>
                         <i className="fa fa-edit"></i>
                       </Button>
-                    </LinkContainer>
+                    </Link>
                     <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
                       <i className="fas fa-trash"></i>
                     </Button>
