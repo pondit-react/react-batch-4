@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -12,7 +12,12 @@ import ProfileScreen from "./screens/ProfileScreen";
 import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import UserListScreen from "./screens/UserListScreen";
 import OrderScreen from "./screens/OrderScreen";
-// import * as screens from "./screens";
+import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
+import UserEditScreen from "./screens/UserEditScreen";
+import ProductListScreen from "./screens/ProductListScreen";
+import ProductEditScreen from "./screens/ProductEditScreen";
+import OrderListScreen from "./screens/OrderListScreen";
 
 const App = () => {
   return (
@@ -21,7 +26,7 @@ const App = () => {
       <main className="py-3">
         <Container>
           <Routes>
-            {/* <Route path="/" element={<HomeScreen/>} /> */}
+            <Route path="/" element={<HomeScreen/>} />
             <Route path="/login" element={<LoginScreen/>} />
             <Route path="/register" element={<RegisterScreen/>} />
             <Route path="/shipping" element={<ShippingScreen/>} />
@@ -29,44 +34,39 @@ const App = () => {
             <Route path="/profile" element={<ProfileScreen/>} />
             <Route path="/placeorder" element={<PlaceOrderScreen/>} />
             <Route path="/admin/userlist" element={<UserListScreen/>} />
-            {/*
-            <Route path="/product/:id" element={screens.ProductScreen} />
-            <Route path="/cart/:id?" element={screens.CartScreen} />
+            <Route path="/product/:id" element={<ProductScreen/>} />
+            
+            <Route path="/cart/:id?" element={<CartScreen/>} />
             <Route path="/order/:id" element={<OrderScreen/>} />
             <Route
               path="/admin/user/:id/edit"
-              element={screens.UserEditScreen}
+              element={<UserEditScreen/>}
             />
             <Route
               path="/admin/productlist"
-              element={screens.ProductListScreen}
+              element={<ProductListScreen/>}
             />
             <Route
               path="/admin/productlist/:pageNumber"
-              element={screens.ProductListScreen}
+              element={<ProductListScreen/>}
             />
             <Route
               path="/admin/product/:id/edit"
-              element={screens.ProductEditScreen}
+              element={<ProductEditScreen/>}
             />
-            <Route path="/admin/orderlist" element={screens.OrderListScreen} />
+            <Route path="/admin/orderlist" element={<OrderListScreen/>} />
 
-            <Route path="/search/:keyword" element={screens.HomeScreen} exact />
-            <Route path="/page/:pageNumber" element={screens.HomeScreen} />
+            <Route path="/search/:keyword" element={<HomeScreen/>} />
+            <Route path="/page/:pageNumber" element={<HomeScreen/>} />
             <Route
               path="/search/:keyword/page/:pageNumber"
-              element={screens.HomeScreen}
-            /> */}
+              element={<HomeScreen/>}
+            />
           </Routes>
         </Container>
       </main>
       <Footer />
-      {/* 
       
-        
-        </Container>
-      </main>
-       */}
     </BrowserRouter>
   );
 };

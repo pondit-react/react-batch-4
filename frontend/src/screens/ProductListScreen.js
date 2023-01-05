@@ -6,10 +6,12 @@ import Loader from '../components/Loader'
 import { listProduct, deleteProduct, createProduct } from '../actions/productAction'
 import * as productConstants from '../constants/productConstants.js'
 import Paginate from '../components/Paginate'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
-const ProductListScreen = ({ history, match }) => {
-  const pageNumber = match.params.pageNumber || 1
+const ProductListScreen = () => {
+  const navigate = useNavigate();
+  const { keyword } = useParams();
+  const pageNumber = keyword.pageNumber || 1;
 
   const dispatch = useDispatch()
 
@@ -39,18 +41,18 @@ const ProductListScreen = ({ history, match }) => {
     dispatch({ type: productConstants.PRODUCT_CREATE_RESET})
     
     if (!userInfo || !userInfo.isAdmin) {
-      history.push('/login')
+      navigate("/login");
     }
 
     if (successCreate) {
-      history.push(`/admin/product/${createdProduct._id}/edit`)
+      navigate(`/admin/product/${createdProduct._id}/edit`);
     } else {
       dispatch(listProduct('', pageNumber))
     }
 
     console.log(products);
 
-  }, [dispatch, history, userInfo, successDelete, successCreate, createProduct, pageNumber])
+  }, [dispatch,  userInfo, successDelete, successCreate, createProduct, pageNumber])
 
   const deleteHandler = (id) => {
     if (window.confirm('Are you sure you want to delete')) {

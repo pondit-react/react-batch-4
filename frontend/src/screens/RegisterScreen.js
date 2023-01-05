@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import React, { useState} from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -15,7 +14,6 @@ const RegisterScreen = () => {
   const [message, setMessage] = useState(null)
 
   const dispatch = useDispatch()
-  const location = useLocation();
 
   const userRegister = useSelector(state => state.userRegister)
   const { loading, error, userInfo } = userRegister

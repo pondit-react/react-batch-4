@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -9,8 +9,10 @@ import { listProductDetails, updateProduct } from '../actions/productAction'
 import FormContainer from '../components/FormContainer'
 import * as productConstants from '../constants/productConstants'
 
-const ProductEditScreen = ({ match, history }) => {
-  const productId = match.params.id
+const ProductEditScreen = () => {
+const navigate = useNavigate();
+const { keyword } = useParams();
+  const productId = keyword.id;
 
   const [name, setName] = useState('')
   const [price, setPrice] = useState(0)
@@ -34,8 +36,8 @@ const ProductEditScreen = ({ match, history }) => {
   useEffect(() => {
     if(successUpdate){
       dispatch({ type: productConstants.PRODUCT_UPDATE_RESET})
-      dispatch(listProductDetails(match.params.id))
-      history.push('/admin/productlist')
+      dispatch(listProductDetails(keyword.id));
+      navigate("/admin/productlist");
     } else {
       if (!product.name || product._id !== productId) {
         dispatch(listProductDetails(productId))
@@ -50,7 +52,7 @@ const ProductEditScreen = ({ match, history }) => {
         setIsTopListed(product.isTopListed)
       }
     }
-  }, [dispatch, history, productId, product, successUpdate])
+  }, [dispatch,  productId, product, successUpdate])
 
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0]

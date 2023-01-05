@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import { Table, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listUsers, deleteUser } from '../actions/userAction'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 
 const UserListScreen = () => {
+  
   const dispatch = useDispatch()
   const navigate = useNavigate();
 
