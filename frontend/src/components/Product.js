@@ -3,23 +3,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card, Button } from "react-bootstrap";
 import Rating from "./Rating";
 import { addToCart, removeFromCart } from "../actions/cartActions";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-const Product = ({ product, history }) => {
+const Product = ({ product }) => {
   const [quantity, setQuantity] = useState(1);
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-
-  // }, [dispatch, product._id, quantity])
-
-  // const addToCartHandler = () => {
-  //   //history.push(`/cart/${product.id}?quantity=${quantity}`)
-  //   if (product._id) {
-  //     dispatch(addToCart(product._id, quantity))
-  //   }
-  // }
+console.log("product", product);
+  const addToCartHandler = () => {
+    navigate(`/cart/${product._id}?quantity=${quantity}`);
+    if (product._id) {
+      dispatch(addToCart(product._id, quantity))
+    }
+  }
 
   return (
     <Card className="my-3 p-2 rounded">
@@ -34,14 +32,14 @@ const Product = ({ product, history }) => {
         </Link>
 
         <Card.Text as="div">
-          {/* <div className='my-3'>{product.rating} from {product.numReviews}</div> */}
+          <div className='my-3'>{product.rating} from {product.numReviews}</div>
           <Rating
             value={product.rating}
             text={`${product.numReviews} reviews`}
           />
         </Card.Text>
         <Card.Text as="h6">৳{product.price}</Card.Text>
-        {/* <Button
+        <Button
           onClick={addToCartHandler}
           className='btn-block'
           type='button'
@@ -49,7 +47,7 @@ const Product = ({ product, history }) => {
           disabled={product.countInStock === 0}
         >
           Add To Cart
-        </Button> */}
+        </Button>
       </Card.Body>
     </Card>
   );

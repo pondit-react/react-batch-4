@@ -21,7 +21,7 @@ import * as productConstants from "../constants/productConstants.js";
 import Meta from "../components/Meta";
 
 const ProductScreen = () => {
-  const { keyword } = useParams();
+  const params = useParams();
   const [quantity, setQuantity] = useState(1);
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState("");
@@ -31,7 +31,7 @@ const ProductScreen = () => {
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
-
+  console.log(product);
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
@@ -52,17 +52,17 @@ const ProductScreen = () => {
         type: productConstants.PRODUCT_CREATE_REVIEW_RESET,
       });
     }
-    dispatch(listProductDetails(keyword.id));
+    dispatch(listProductDetails(params.id));
   }, [dispatch, successProductReview]);
 
   const addToCartHandler = () => {
-    navigate(`/cart/${keyword.id}?quantity=${quantity}`);
+    navigate(`/cart/${params.id}?quantity=${quantity}`);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createProductReview(keyword.id, {
+      createProductReview(params.id, {
         rating,
         comment,
       })
@@ -92,7 +92,7 @@ const ProductScreen = () => {
                 </ListGroup.Item>
                 <ListGroup.Item>
                   <Rating
-                    value={product.rating}
+                    value={product?.rating && product?.rating}
                     text={`${product.numReviews} reviews`}
                   />
                 </ListGroup.Item>

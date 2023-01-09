@@ -30,16 +30,16 @@ const { keyword, pageNumberParam } = useParams();
 
   //fetch products for infiniteScroll
   const fetchMoreData = () => {
-    //setPageNumber(page)
+    setPageNumber(page)
     if (page < pages) {
       setPageNumber(page + 1);
     }
   };
 
   useEffect(() => {
-    // if(products.length > 0){
-    //   setPageNumber(page)
-    // }
+    if(products.length > 0){
+      setPageNumber(page)
+    }
     dispatch(listProduct(keyword, page ? page + 1 : pageNumber, products));
   }, [dispatch, pageNumber]);
 

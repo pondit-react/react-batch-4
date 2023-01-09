@@ -6,7 +6,7 @@ import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
 const CartScreen = () => {
-  const { keyword } = useParams();
+  const  keyword  = useParams();
   const location = useLocation();
   const navigate = useNavigate();
   const productId = keyword.id;
@@ -17,7 +17,6 @@ const CartScreen = () => {
 
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart;
-  console.log(productId)
 
   useEffect(() => {
     if(productId){ 
@@ -30,7 +29,7 @@ const CartScreen = () => {
   }
 
   const checkoutHandler = (id) => {
-   navigate("/login?redirect=shipping");
+   navigate("/shipping");
   }
 
   return (

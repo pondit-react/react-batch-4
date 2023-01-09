@@ -33,44 +33,45 @@ const Header = () => {
               <Route element={<SearchBox />} />
             </Routes> */}
             <Nav className="ml-auto">
-                <Nav.Link>
-              <Link to="/cart">
+              <Nav.Link>
+                <Link to="/cart">
                   <i className="fas fa-shopping-cart"></i>
                   Cart{" "}
                   <Badge variant="success">
                     {cartItems.reduce((acc, item) => acc + item.quantity, 0)}
                   </Badge>
-              </Link>
-                </Nav.Link>
+                </Link>
+              </Nav.Link>
               {userInfo ? (
                 <NavDropdown title={userInfo.name} id="username">
-                  <Link to="/profile">
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </Link>
+                  <NavDropdown.Item>
+                    <Link to="/profile">Profile</Link>
+                  </NavDropdown.Item>
+
                   <NavDropdown.Item onClick={logoutHandler}>
                     Logout
                   </NavDropdown.Item>
                 </NavDropdown>
               ) : (
-                   <Nav.Link> 
-                <Link to="/login">
+                <Nav.Link>
+                  <Link to="/login">
                     <i className="fas fa-user"></i>
                     Sign In
-                </Link>
-                   </Nav.Link> 
+                  </Link>
+                </Nav.Link>
               )}
 
               {userInfo && userInfo.isAdmin && (
                 <NavDropdown title="Admin" id="adminmenu">
-                  <Link to="/admin/userlist">
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </Link>
-                  <Link to="/admin/productlist">
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </Link>
-                  <Link to="/admin/orderlist">
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </Link>
+                  <NavDropdown.Item>
+                    <Link to="/admin/userlist">Users</Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <Link to="/admin/productlist">Products</Link>
+                  </NavDropdown.Item>
+                  <NavDropdown.Item>
+                    <Link to="/admin/orderlist">Orders</Link>
+                  </NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>
