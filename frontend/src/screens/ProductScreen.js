@@ -19,6 +19,7 @@ import Loader from "../components/Loader";
 import Message from "../components/Message";
 import * as productConstants from "../constants/productConstants.js";
 import Meta from "../components/Meta";
+import { addToCart } from "../actions/cartActions";
 
 const ProductScreen = () => {
   const params = useParams();
@@ -56,7 +57,10 @@ const ProductScreen = () => {
   }, [dispatch, successProductReview]);
 
   const addToCartHandler = () => {
-    navigate(`/cart/${params.id}?quantity=${quantity}`);
+    navigate(`/cart/${product._id}?quantity=${quantity}`);
+    if (product._id) {
+      dispatch(addToCart(product._id, quantity));
+    }
   };
 
   const submitHandler = (e) => {
