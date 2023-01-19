@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
-const CartScreen = ({ match, location, history }) => {
-  const productId = match.params.id
+const CartScreen = () => {
+  const  keyword  = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const productId = keyword.id;
 
   const quantity = location.search ? Number(location.search.split('=')[1]) : 1
 
@@ -14,7 +17,6 @@ const CartScreen = ({ match, location, history }) => {
 
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart;
-  console.log(productId)
 
   useEffect(() => {
     if(productId){ 
@@ -27,7 +29,7 @@ const CartScreen = ({ match, location, history }) => {
   }
 
   const checkoutHandler = (id) => {
-    history.push('/login?redirect=shipping')
+   navigate("/shipping");
   }
 
   return (

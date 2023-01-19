@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../components/FormContainer'
 import CheckoutSteps from '../components/CheckoutSteps'
 import { saveShippingAddress } from '../actions/cartActions'
+import { useNavigate } from 'react-router-dom'
 
-const ShippingScreen = ({ history }) => {
+const ShippingScreen = () => {
   const cart = useSelector(state => state.cart)
   const { shippingAddress } = cart
 
@@ -15,13 +16,14 @@ const ShippingScreen = ({ history }) => {
   const [country, setCountry] = useState(shippingAddress.country)
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault()
     console.log("gfgf");
     dispatch(saveShippingAddress({address, city, postalCode, country}))
 
-    history.push('/payment')
+    navigate("/payment");
   }
 
   return (

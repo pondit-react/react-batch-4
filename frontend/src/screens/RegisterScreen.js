@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState} from 'react'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
@@ -7,7 +6,7 @@ import Loader from '../components/Loader'
 import { register } from '../actions/userAction.js'
 import FormContainer from '../components/FormContainer'
 
-const RegisterScreen = ({ location, history }) => {
+const RegisterScreen = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -19,13 +18,13 @@ const RegisterScreen = ({ location, history }) => {
   const userRegister = useSelector(state => state.userRegister)
   const { loading, error, userInfo } = userRegister
 
-  const redirect = location.search ? location.search.split('=')[1] : '/'
+  // const redirect = location.search ? location.search.split('=')[1] : '/'
 
-  useEffect(() => {
-    if (userInfo) {
-      history.push(redirect)
-    }
-  }, [history, userInfo, redirect])
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     history.push(redirect)
+  //   }
+  // }, [history, userInfo, redirect])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -102,7 +101,7 @@ const RegisterScreen = ({ location, history }) => {
       <Row className='py-3'>
         <Col>
           Have an Account?{' '}
-          <Link to={redirect ? `/login/redirect=${redirect}` : '/login'}>Login</Link>
+          {/* <Link to={redirect ? `/login/redirect=${redirect}` : '/login'}>Login</Link> */}
         </Col>
       </Row>
 
